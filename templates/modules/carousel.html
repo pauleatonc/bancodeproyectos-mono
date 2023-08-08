@@ -1,0 +1,167 @@
+{% load static %}
+
+<div class="container my-4">
+  <p class="font-level-2 text-center text-lg-left my-4">Imágenes del proyecto</p>
+
+    <!-- Imagen portada -->
+    <div class="container d-none d-sm-block"> <!-- Hides on xs, shows on sm and larger -->
+      <div class="row my-4 image-container">
+        <div class="col image-container image-portada">
+          <img class="portada-img" src="{{ portada }}" alt="img-miniatura" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Resto de imágenes -->
+    <!-- En image. colocar el "nombre del parámetro imagen de la base de datos".url -->
+    <div class="container" id="carousel">
+      <div class="row flex-container justify-content-start image-container">
+        <a class="col-4 col-md-4 col-sm-6 image-container img-carousel">
+            <img class="portada-miniature" src="{{ portada }}" alt="img-miniatura" />
+          </a>
+        {% for image in images %}
+          <a class="col-4 col-md-4 col-sm-6 image-container img-carousel carousel-item">
+            <img src="{{ image.image_carousel.url }}" alt="img-miniatura" />
+            <div class="image-counter"></div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="image-counter">1 de 7 imágenes</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style=""> Cerrar
+          <i class="material-symbols-outlined">close</i>
+        </button>
+      </div>
+      <div class="modal-body">
+          <img id="imageInModal" src="" alt="Selected image" class="img-fluid">
+          <div class="button-container modal-buttons">
+            <button type="button" class="btn circle-btn text-primary text-nowrap" id="previousImage">
+                <i class="material-symbols-outlined">chevron_left</i>
+            </button>
+            <button type="button" class="btn circle-btn text-primary text-nowrap" id="nextImage">
+                <i class="material-symbols-outlined">chevron_right</i>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+$(document).ready(function() {
+  function updateCounter() {
+    var counter = 0;
+    var containerWidth = $('#carousel').width();  // Get the width of the container with ID "carousel"
+
+    // Count and hide image counter
+    $('.carousel-item').each(function() {
+      var imageLeft = $(this).offset().left - $('#carousel').offset().left;  // Image left offset relative to the container
+      if (imageLeft >= containerWidth) {
+        counter++;
+      }
+      $('.image-counter', this).hide(); // hide the counter
+    });
+
+    // Display counter on last visible item
+    if (counter > 0) {
+      var lastVisibleItem = $('.carousel-item').slice(-counter-1, -counter);
+      lastVisibleItem.find('.image-counter').text('+' + counter).show(); // show the counter
+    }
+  }
+
+  $(window).on('resize', updateCounter).resize();  // Trigger the function on page load and resize
+});
+
+
+</script>
+
+
+<script>
+$(document).ready(function() {
+  var currentImageIndex = 0;
+  var images = [];
+
+  // Collect all images from the carousel, the cover image, and the miniature image
+  $('.carousel-item img, .image-portada img, .portada-miniature').each(function() {
+    var imgSrc = $(this).attr('src');
+    if (!images.includes(imgSrc)) {
+      images.push(imgSrc);
+    }
+  });
+
+  function updateImageCounter() {
+    $('#image-counter').text((currentImageIndex + 1) + ' de ' + images.length + ' imágenes');
+  }
+
+  function changeImage(index, requireAnimation = true) {
+    var modalImage = $('#imageInModal');
+
+    if (!requireAnimation) {
+      modalImage.attr('src', images[index]);
+      modalImage.css('transform', 'translateX(0)');
+      currentImageIndex = index;
+      updateImageCounter();
+      return;
+    }
+
+    var direction = index > currentImageIndex ? -100 : 100;
+    modalImage.css('transform', 'translateX(' + direction + '%)');
+
+    setTimeout(function() {
+      modalImage.attr('src', images[index]);
+      modalImage.css({
+          'transition': 'none',
+          'transform': 'translateX(' + (-direction) + '%)'
+      });
+
+      modalImage.offset();
+
+      modalImage.css({
+          'transition': 'transform 0.4s ease-in-out',
+          'transform': 'translateX(0)'
+      });
+
+      currentImageIndex = index;
+      updateImageCounter();
+    }, 300);
+  }
+
+  $('.carousel-item img, .image-portada img, .portada-miniature').on('click', function() {
+    var imgSrc = $(this).attr('src');
+    var index = images.indexOf(imgSrc);
+    var animate = index !== 0;
+    changeImage(index, animate);
+    $('#imageModal').modal('show');
+  });
+
+  $('#previousImage').on('click', function() {
+    var newIndex = (currentImageIndex - 1 + images.length) % images.length;
+    changeImage(newIndex);
+  });
+
+  $('#nextImage').on('click', function() {
+    var newIndex = (currentImageIndex + 1) % images.length;
+    changeImage(newIndex);
+  });
+
+  $(document).on('keydown', function(e) {
+    if ($('#imageModal').hasClass('show')) {
+      var newIndex = (e.keyCode == 37) ?
+                    (currentImageIndex - 1 + images.length) % images.length :
+                    (e.keyCode == 39) ?
+                    (currentImageIndex + 1) % images.length : currentImageIndex;
+      changeImage(newIndex);
+    }
+  });
+});
+
+</script>
