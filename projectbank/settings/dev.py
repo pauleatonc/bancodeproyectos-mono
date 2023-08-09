@@ -12,7 +12,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = [ 'qabancodeproyectos.subdere.gob.cl' ]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
