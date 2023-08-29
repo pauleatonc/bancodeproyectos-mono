@@ -29,7 +29,7 @@ class ContactForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'required': True, 'placeholder': 'Describe la razón de contacto.', 'class': 'custom-textarea'}),
         }
 
-    captcha = ReCaptchaField()
+    #captcha = ReCaptchaField()
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

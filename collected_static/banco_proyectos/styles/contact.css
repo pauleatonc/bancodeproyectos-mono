@@ -1,0 +1,122 @@
+@import url("banco_proyectos.css");
+
+.Frame-221 {
+  width: 650px;
+  height: 856px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 34px;
+  margin: 70px 395px 242px;
+  padding: 0;
+}
+
+.form-group-contact {
+  text-align: left;
+  width: 100%;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.form-group-contact label {
+  margin-left: 15px;
+  position: absolute;
+  top: -10px;
+  background-color: var(--color-gray-ffffff);
+}
+
+.custom-input {
+  width: 100%;
+  height: 60px;
+  padding: 15px 14px;
+  border: solid 1px var(--color-gray-373737);
+  background-color: var(--color-gray-ffffff);
+}
+
+.custom-select {
+  height: 60px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  box-shadow: 0 0 0 0 #cbdafc;
+  border: solid 1px var(--color-gray-373737);
+  background-color: var(--color-gray-ffffff);
+}
+
+.custom-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 15px 14px;
+  border: solid 1px var(--color-gray-373737);
+  background-color: var(--color-gray-ffffff);
+}
+
+.card-contact {
+  width: 570px;
+  height: 800px;
+  margin: 69px 435px 206px 69px;
+  padding: 0 0 18px;
+}
+
+/* Mobile (320px to 480px) */
+@media (min-width: 320px) and (max-width: 480px) {
+  .card-contact {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .form-group-contact  label{
+    margin-left: 0px;
+    top: -10px;
+  }
+
+  .custom-input {
+    width: 100%;
+    height: 60px;
+    padding: 0px 0px;
+    border: solid 1px var(--color-gray-373737);
+    background-color: var(--color-gray-ffffff);
+  }
+}
+
+/* Small (481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .card-contact {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .form-group-contact label {
+    margin-left: 0px;
+    top: -10px;
+  }
+
+  .custom-input {
+    width: 100%;
+    height: 60px;
+    padding: 0px 0px;
+    border: solid 1px var(--color-gray-373737);
+    background-color: var(--color-gray-ffffff);
+  }
+}
+
+/* Medium (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .card-contact {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+}
+
+/* Large (992px to 1399px) */
+@media (min-width: 992px) and (max-width: 1399px) {
+  .card-contact {
+    width: 90%;
+    margin: 0 auto;
+  }
+}

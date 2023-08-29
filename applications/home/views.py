@@ -11,25 +11,9 @@ from django.views.generic import View, TemplateView, CreateView
 from django.http import  HttpResponseServerError
 
 
-def send_email(subject, content, from_email, to_emails):
-    message = Mail(
-        from_email=from_email,
-        to_emails=to_emails,
-        subject=subject,
-        plain_text_content=content)
-
-    try:
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
-    except Exception as e:
-        print(e.message)
-
 # forms
 from .forms import ContactForm
-
+from .functions import send_email
 
 class HomePageView(ProjectsListView):
     template_name = 'home/index.html'

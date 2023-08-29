@@ -1,0 +1,164 @@
+.title {
+  width: 100%;
+}
+.line {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom styles for the dropdown menu */
+.dropdown-scrollbar {
+  max-width: 320px;
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.dropdown-menu-filtro {
+  margin: 0 10px 5px 50px;
+}
+.dropdown-sort {
+  display: flex;
+  align-self: end;
+  height: 50px;
+  margin: 10px 20px 20px 10px;
+}
+
+.btn-sort {
+  max-width: auto;
+  height: 48px;
+  flex-grow: 0;
+  padding: 12px 21px 12px 21px;
+  border: solid 1px rgb(54, 54, 54);
+  background-color: #ffffff;
+}
+
+/* Base styles for the card */
+.card-project {
+  position: relative; /* Agregamos esta propiedad */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2px;
+  margin: 10px 0px 10px 0px; /* Margen de 10 píxeles en la parte superior e inferior */
+  padding: 15px;
+  border: solid 2px rgb(63, 135, 208);
+}
+
+.card-img-project {
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* Proporción 16:9 para mantener la relación de aspecto */
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0px;
+  margin: 0 0 0 0;
+}
+
+.img-project {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.description-project {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Number of lines you want to show */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.badge {
+  color: #0f69c4;
+  font-size: 14px;
+}
+
+.btn-more {
+  position: absolute; /* Agregamos esta propiedad */
+  bottom: 10px; /* Ajusta este valor para definir la distancia entre el botón y el borde inferior */
+  right: 10px; /* Ajusta este valor para definir la distancia entre el botón y el borde derecho */
+  width: 110px;
+  height: 40px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end; /* Elimina "justify-content: flex-end;" */
+  gap: 10px;
+  padding: 8px 15px;
+  background-color: rgb(15, 105, 196);
+  color: #ffffff;
+}
+
+@media (width: 320px) {
+  button .material-symbols-outlined {
+    display: none;
+  }
+  .dropdown-menu-filtro {
+    margin: 2px 2px 2px 2px;
+    padding: 2px;
+  }
+}
+
+/*Mobile (320px to 480px) */
+@media (min-width: 320px) and (max-width: 480px) {
+  .card-project {
+    width: 95%; /* Centrar con márgenes iguales */
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .card-img-project {
+    padding-top: 45%;
+  }
+}
+
+/* Extra small (481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .card-project {
+    width: 80%; /* Centrar con márgenes iguales */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* small tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  .card-project {
+    width: 85%; /* Centrar con márgenes iguales */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .col-md-12 {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .card-project {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1919px) {
+  .card-project {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .card-project {
+    width: 70%; /* Dos columnas por fila */
+  }
+}

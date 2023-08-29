@@ -1,0 +1,35 @@
+@import url('banco_proyectos.css');
+
+.radio-select-buttons label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.radio-select-buttons input[type="radio"] {
+    display: none;
+}
+
+.radio-select-buttons input[type="radio"] + label {
+  padding: 5px 10px;
+  background-color: #eaeaea;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.radio-select-buttons input[type="radio"]:checked + label {
+  background-color: #1e90ff;
+  color: #fff;
+}
+
+.register-user-success{
+    min-height: 60px;
+    min-width: 630px;
+    padding-bottom: 18px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 18px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    margin: 50px;
+}
